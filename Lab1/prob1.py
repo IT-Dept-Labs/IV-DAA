@@ -1,50 +1,68 @@
+
+def wPrefer(w_pref,j,m1,w):
+	for i in range(len(w_pref)):
+		if w_pref[w][i] == j:
+			return True
+		if w_pref[w][i]==m1:
+			return False	
+
+
 n=int(input("Enter n: "))
-men=[i for i in range(n)]
-women=[i for i in range(n)]
 m_pref=[[0 for i in range(n)] for k in range(n)]
 w_pref=[[0 for i in range(n)] for k in range(n)]
-for i in range(n):
-	print("Enter preference of man "+str(i)+": ")
-	for j in range(n):
-		m_pref[i][j]=int(input(""))
 
-for i in range(n):
-	print("Enter preference of woman "+str(i)+": ")
-	for j in range(n):
-		w_pref[i][j]=int(input(""))
 
-free_men=[True for i in range(n)]
-free_women=[True for i in range(n)]
+lines=[line.rstrip('\n') for line in open('i.txt')]
+for i in range(n):
+	for j in range(n):
+		m_pref[i][j]=int(lines[i][j])
+
+for i in range(n,2*n):
+	for j in range(n):
+		w_pref[i-n][j]=int(lines[i][j])
+
+# for i in range(n):
+# 	print("Enter preference of man "+str(i)+": ")
+# 	for j in range(n):
+# 		m_pref[i][j]=int(input(""))
+
+# for i in range(n):
+# 	print("Enter preference of woman "+str(i)+": ")
+# 	for j in range(n):
+# 		w_pref[i][j]=int(input(""))
+
 husband=[None for i in range(n)]
 wife=[None for i in range(n)]
-prop_count=[0 for i in range(n)]
-curr=0
-x1=0
-x2=0
+mFree=[False for i in range(n)]
+free=n
 
-for i in range(n):
-	if free_men[i]==True:
-		for j in range(n):
-			if free_women[m_pref[i][j]]==True:
-				free_women[m_pref[i][j]]=False
-				wife[i]=m_pref[i][j]
-				husband[m_pref[i][j]]=i
-				free_men[i]=False
-				break
+
+while free>0:
+	for j in range(n):
+		if mFree[j]==False:
+			break
+
+	for i in range(n):
+		if mFree[j]==False:
+			w=m_pref[j][i]
+
+			if husband[w]==None:
+				husband[w]=j
+				wife[j]=w
+
+				mFree[j]=True
+				free-=1
 			else:
-				curr=husband[m_pref[i][j]]
-				for k in range(n):
-					if w_pref[m_pref[i][j]][k]==curr:
-						x1=w_pref[m_pref[i][j]][k]
-					if w_pref[m_pref[i][j]][k]==i:
-						x2=w_pref[m_pref[i][j]][k]
-				if x1>x2:
-					wife[i]=m_pref[i][j]
-					husband[m_pref[i][j]]=i
-					free_men[curr]=True
-					free_men[i]=False
+				m1=husband[w]
+
+				if wPrefer(w_pref,j,m1,w)==True:
+					husband[w]=j
+					wife[j]=w
+					mFree[j]=True
+					mFree[m1]=False
+
+print("Man\tWoman")
 for i in range(n):
-	print(str(i)+" - "+str(wife[i]))
+	print(str(i)+"\t"+str(wife[i]))
 
 
-		
