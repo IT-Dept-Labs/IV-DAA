@@ -7,7 +7,8 @@ def wPrefer(w_pref,j,m1,w):
 			return False	
 
 
-n=int(input("Enter n: "))
+#n=int(input("Enter n: "))
+n=5
 m_pref=[[0 for i in range(n)] for k in range(n)]
 w_pref=[[0 for i in range(n)] for k in range(n)]
 
@@ -20,6 +21,9 @@ for i in range(n):
 for i in range(n,2*n):
 	for j in range(n):
 		w_pref[i-n][j]=int(lines[i][j])
+
+Men=['Victor', 'Wyatt', 'Xavier', 'Yancey', 'Zeus']
+Women=['Amy', 'Bertha', 'Clare', 'Diane', 'Erika']
 
 # for i in range(n):
 # 	print("Enter preference of man "+str(i)+": ")
@@ -63,6 +67,6 @@ while free>0:
 
 print("Man\tWoman")
 for i in range(n):
-	print(str(i)+"\t"+str(wife[i]))
+	print(str(Men[i])+"\t"+Women[wife[i]])
 
 
