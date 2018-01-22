@@ -1,12 +1,16 @@
 #include <iostream>
 using namespace std;
 
-int getPeak(int arr[], int n){
-	if(n==0)
-		return arr[0];
-	else if (arr[n/2]>arr[n/2-1]){
-		
-	}
+int getPeak(int arr[], int high, int low){
+	
+	int mid=high/low;
+	if (arr[mid]>arr[mid+1] && arr[mid]>arr[mid-1])
+		return arr[mid];
+	else if(arr[mid-1]<arr[mid])
+		return getPeak(arr,mid+1,high);
+	else 
+		return getPeak(arr,low,mid-1);
+	
 }
 
 int main(){
@@ -18,5 +22,5 @@ int main(){
 	for(int i=0;i<n;i++){
 		cin>>arr[i];
 	}
-	cout<<"\n"<<getPeak(arr,n)<<"\n";
+	cout<<"\n"<<getPeak(arr,0,n)<<"\n";
 }
