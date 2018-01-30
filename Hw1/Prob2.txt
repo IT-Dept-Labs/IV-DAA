@@ -1,0 +1,15 @@
+A natural way to get started thinking about this problem is to
+assume the claim is false and try to work toward obtaining a contradiction.
+What would it mean for the claim to be false? There would exist some stable
+matching M in which a good man m was married to a bad woman w.
+Now, let’s consider what the other pairs in M look like. There are k good
+men and k good women. Could it be the case that every good woman is married
+to a good man in this matching M? No: one of the good men (namely, m) is
+already married to a bad woman, and that leaves only k − 1 other good men.
+So even if all of them were married to good women, that would still leave some
+good woman who is married to a bad man.
+Let w' be such a good woman, who is married to a bad man. It is now
+easy to identify an instability in M: consider the pair (m, w' ). Each is good,
+but is married to a bad partner. Thus, each of m and w' prefers the other to
+their current partner, and hence (m, w') is an instability. This contradicts our
+assumption that M is stable, and hence concludes the proof.

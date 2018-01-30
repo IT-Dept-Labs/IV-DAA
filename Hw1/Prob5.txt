@@ -1,0 +1,73 @@
+The Gale-Shapley algorithm is remarkably robust to variations on
+the Stable Matching Problem. So, if you’re faced with a new variation of the
+problem and can’t find a counterexample to stability, it’s often a good idea to
+check whether a direct adaptation of the G-S algorithm will in fact produce
+stable matchings.
+That turns out to be the case here. We will show that there is always a
+stable matching, even in this more general model with forbidden pairs, and
+we will do this by adapting the G-S algorithm. To do this, let’s consider why
+the original G-S algorithm can’t be used directly. The difficulty, of course, is
+that the G-S algorithm doesn’t know anything about forbidden pairs, and so
+the condition in the While loop,
+While there is a man m who is free and hasn’t proposed to
+every woman ,Solved Exercises
+won’t work: we don’t want m to propose to a woman w for which the pair
+(m, w) is forbidden.
+Thus, let’s consider a variation of the G-S algorithm in which we make
+only one change: we modify the While loop to say,
+While there is a man m who is free and hasn’t proposed to
+every woman w for which (m, w) !∈ F.
+Here is the algorithm in full.
+Initially all m ∈ M and w ∈ W are free
+While there is a man m who is free and hasn’t proposed to
+every woman w for which (m, w) !∈ F
+Choose such a man m
+Let w be the highest-ranked woman in m ’s preference list
+to which m has not yet proposed
+If w is free then
+(m, w) become engaged
+Else w is currently engaged to m'
+If w prefers m' to m then
+m remains free
+Else w prefers m to m'
+(m, w) become engaged
+m' becomes free
+Endif
+Endif
+Endwhile
+Return the set S of engaged pairs
+We now prove that this yields a stable matching, under our new definition
+of stability.
+To begin with, facts (1.1), (1.2), and (1.3) from the text remain true (in
+particular, the algorithm will terminate in at most n 2 iterations). Also, we
+don’t have to worry about establishing that the resulting matching S is perfect
+(indeed, it may not be). We also notice an additional pairs of facts. If m is
+a man who is not part of a pair in S, then m must have proposed to every
+nonforbidden woman; and if w is a woman who is not part of a pair in S, then
+it must be that no man ever proposed to w.
+Finally, we need only show
+(1.9)
+There is no instability with respect to the returned matching S.
+2122
+Chapter 1 Introduction: Some Representative Problems
+Proof. Our general definition of instability has four parts: This means that we
+have to make sure that none of the four bad things happens.
+First, suppose there is an instability of type (i), consisting of pairs (m, w)
+and (m' , w' ) in S with the property that (m, w' ) !∈ F, m prefers w' to w, and w'
+prefers m to m' . It follows that m must have proposed to w' ; so w' rejected m,
+and thus she prefers her final partner to m—a contradiction.
+Next, suppose there is an instability of type (ii), consisting of a pair
+(m, w) ∈ S, and a man m' , so that m' is not part of any pair in the matching,
+(m' , w) !∈ F, and w prefers m' to m. Then m' must have proposed to w and
+been rejected; again, it follows that w prefers her final partner to m' —a
+contradiction.
+Third, suppose there is an instability of type (iii), consisting of a pair
+(m, w) ∈ S, and a woman w' , so that w' is not part of any pair in the matching,
+(m, w' ) !∈ F, and m prefers w' to w. Then no man proposed to w' at all;
+in particular, m never proposed to w' , and so he must prefer w to w' —a
+contradiction.
+Finally, suppose there is an instability of type (iv), consisting of a man
+m and a woman w, neither of which is part of any pair in the matching,
+so that (m, w) !∈ F. But for m to be single, he must have proposed to every
+nonforbidden woman; in particular, he must have proposed to w, which means
+she would no longer be single—a contradiction
