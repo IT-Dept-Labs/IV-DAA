@@ -8,9 +8,11 @@ int getMax(int arr[],int n){
 			here+=arr[i];
 			if(arr[i]>0 && indI>i )
 				indI=i;
-			if(here<0)
+			if(here<0){
 				here=0;
-			if(here>max){
+				indI=n;
+			}
+			if(here>=max){
 				max=here;
 				indJ=i;
 			}
@@ -23,7 +25,7 @@ int getMax(int arr[],int n){
 
 
 int main(){
-	int arr[]={-2,-1,-1,-2,3,4,-5,-76,-10,-30};
+	int arr[]={-2,-1,-1,-2,3,4,-8,74,-10,-30};
 	int n=10;
 	cout<<getMax(arr,n)<<'\n';
 
