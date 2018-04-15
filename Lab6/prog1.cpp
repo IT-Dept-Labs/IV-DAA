@@ -20,16 +20,16 @@ string findset( DSNode *x){
 
 	DSNode *temp;
 	*temp=*x;
-	cout<<x->label;
-	while(temp->parent->label==temp->label){
+	//cout<<x->label;
+	while(temp->parent->label!=temp->label){
 		cout<<temp->label;
 		temp=temp->parent;
 	}
 	return temp->label;
 
 }
-
-/*void unionSet(DSNode *u, DSNode *v){
+/*
+void unionSet(DSNode *u, DSNode *v){
 
 	DSNode *uRep=findset(u);
 	DSNode *vRep=findset(v);
@@ -47,11 +47,15 @@ string findset( DSNode *x){
 
 int main(int argc, char const *argv[])
 {
-	DSNode *x;
-	x->label="al";
-	string a=x->label;
+	DSNode x,y;
+	x.label="a";
+	y.label="b";
+	string a=x.label;
+	cout<<a;
+	makeSet(&x);
+	makeSet(&y);
+	a=findset(&x);
+	// unionSet(&x,&y);
 	 cout<<a;
-	//a=findset(&x);
-	// cout<<p->label;
 	 return 0;
 }
