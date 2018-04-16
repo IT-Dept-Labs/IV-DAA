@@ -44,6 +44,8 @@ def Huffman(s,f):
 	return H.extractMin()
 
 b=[]
+
+#Code to traverse through the tree and print the encoded bits of each character
 def trav(x):
 	if x.left==None and x.right==None:
 		print(x.sym,b)

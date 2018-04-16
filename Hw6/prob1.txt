@@ -1,0 +1,5 @@
+Q: Design a linear time algorithm which, given an undirected graph G
+ and a particular edge e in it,determines whether G has cycle containing e
+
+ A: Let e = (u,v). The graph has a cycle containing e if and only if u and v are in the same connected
+component in the graph obtained by deleting e. This can be easily checked by a DFS on this graph.
